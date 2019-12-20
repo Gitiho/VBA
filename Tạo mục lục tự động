@@ -16,6 +16,7 @@ Sub TAOMUCLUC(RNG As String)
 
     With wsSheet
         .Cells(2, 1).Value = "DANH SÁCH CÁC SHEETS"
+        .Cells(2, 1).name = "Index"
         .Cells(4, 1).Value = "STT"
         .Cells(4, 2).Value = "TÊN SHEETS"
     End With
