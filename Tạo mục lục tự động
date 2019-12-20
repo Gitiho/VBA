@@ -1,0 +1,69 @@
+Option Explicit
+Function TAOMUCLUC(RNG As String)
+     Dim wsSheet As Worksheet
+    Dim Ws As Worksheet
+    Dim Counter As Long
+   Dim xlSheet
+    On Error Resume Next
+    Set wsSheet = Sheets("Mucluc")
+    'Kiem tra su ton tai cua Sheet
+    On Error GoTo 0
+    If wsSheet Is Nothing Then
+        'Neu chua co thi them vao vi tri dau tien cua Workbook
+        Set wsSheet = ActiveWorkbook.Sheets.Add(Before:=Worksheets(1))
+        wsSheet.Name = "Mucluc"
+    End If
+
+    With wsSheet
+        .Cells(2, 1).Value = "DANH SÁCH CÁC SHEETS"
+        .Cells(4, 1).Value = "STT"
+        .Cells(4, 2).Value = "TÊN SHEETS"
+    End With
+
+    'Merge Cell
+    With Range("A2:B2")
+        .Merge
+        .HorizontalAlignment = xlCenter
+        .Font.Bold = True
+    End With
+
+    'Set ColumnWidth
+    With Columns("A:A")
+        .ColumnWidth = 8
+        .HorizontalAlignment = xlCenter
+    End With
+
+     With Range("A4")
+        .HorizontalAlignment = xlCenter
+        .Font.Bold = True
+    End With
+
+    Columns("B:B").ColumnWidth = 30
+    With Range("B4")
+        .HorizontalAlignment = xlCenter
+        .Font.Bold = True
+    End With
+
+    Counter = 1
+    For Each Ws In Worksheets
+        If Ws.Name <> wsSheet.Name Then
+            'Gan gia tri cot thu tu
+            wsSheet.Cells(Counter + 4, 1).Value = Counter
+            'Tao lien ket
+            wsSheet.Hyperlinks.Add Anchor:=wsSheet.Cells(Counter + 4, 2), _
+                                            Address:="", _
+                                            SubAddress:=Ws.Name & "!A1", _
+                                            ScreenTip:=Ws.Name, _
+                                            TextToDisplay:=Ws.Name
+            'Them nut Quay ve Sheet Muc luc tai moi Sheet
+            With Ws
+                .Hyperlinks.Add Anchor:=.Range(RNG), Address:="", SubAddress:="Index", TextToDisplay:="Tr" & ChrW(7903) & " v" & ChrW(7873)
+            End With
+            Counter = Counter + 1
+        End If
+    Next Ws
+   Set xlSheet = Nothing
+End Function
+Sub TAOMUCLUCSHEET()
+    TAOMUCLUC "T1"
+End Sub
