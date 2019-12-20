@@ -1,5 +1,5 @@
 Option Explicit
-Sub TAOMUCLUC(RNG As String)
+Function TAOMUCLUC(RNG As String)
      Dim wsSheet As Worksheet
     Dim Ws As Worksheet
     Dim Counter As Long
