@@ -1,0 +1,17 @@
+# VBA\
+
+Option Explicit
+' Nguon Suu Tam
+Function SumByColor(DefinedColorRange As Range, SumRange As Range)
+Application.Volatile
+Dim ICol As Integer
+Dim GCell As Range
+ICol = DefinedColorRange.Interior.ColorIndex
+For Each GCell In SumRange
+    If ICol = GCell.Interior.ColorIndex Then
+        SumByColor = SumByColor + GCell.Value
+    End If
+Next GCell
+
+End Function
+
