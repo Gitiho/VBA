@@ -1,0 +1,14 @@
+# VBA
+Option Explicit
+' Suu tam
+Function CountByColor(CellColor As Range, CountRange As Range)
+Application.Volatile
+Dim ICol As Integer
+Dim TCell As Range
+ICol = CellColor.Interior.ColorIndex
+For Each TCell In CountRange
+If ICol = TCell.Interior.ColorIndex Then
+CountByColor = CountByColor + 1
+End If
+Next TCell
+End Function
