@@ -36,7 +36,7 @@ Sub MergeExcelFiles()
             Application.ScreenUpdating = True
             Application.Calculation = xlCalculationAutomatic
  
-            MsgBox "Xu ly thanh cong " & countFiles & " files" & vbCrLf & "Hop nhat " & countSheets & " worksheets", Title:="Hop nhat cac File Excel"
+            MsgBox "Xu ly thanh cong " & countFiles & " files" & vbCrLf & "Hop nhat " & countSheets-1 & " worksheets", Title:="Hop nhat cac File Excel"
         End If
  
     Else
