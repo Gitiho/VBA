@@ -1,0 +1,16 @@
+# VBA
+'Nguồn sưu tầm và chỉnh sửa
+'tìm kiem tren google bang vba
+Option Explicit
+Sub SearchWindow()
+    Dim chromePath As String
+    Dim search_string As String
+    Dim query As String
+    query = InputBox("Vui long nhap dia chi trang Web", "Google Search")
+    search_string = query
+    search_string = Replace(search_string, " ", "+")
+    ' đoi duong dan trinh duyet de phu hop
+    'chromePath = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+    chromePath = "C:\Users\TuanBa\AppData\Local\CocCoc\Browser\Application\browser.exe"
+    Shell (chromePath & " -url http://google.com/#q=" & search_string)
+End Sub
