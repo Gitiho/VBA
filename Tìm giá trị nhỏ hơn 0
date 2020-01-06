@@ -1,0 +1,16 @@
+# VBA
+Option Explicit
+' tim so nho hon 0 trong vung
+' nguon suu tam
+Sub highlightNegativeNumbers()
+    Dim Rng As Range
+    Set Rng = Application.InputBox("Chon vung can tim", Type:=8)
+    For Each Rng In Selection
+        If WorksheetFunction.IsNumber(Rng) Then
+            If Rng.Value < 0 Then
+                Rng.Font.Color = -16776961
+            End If
+        End If
+    Next
+    Set Rng = Nothing
+End Sub
