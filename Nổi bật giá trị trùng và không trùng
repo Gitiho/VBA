@@ -1,0 +1,13 @@
+# VBA
+Option Explicit
+'Làm nổi bật các giá trị duy nhất
+Sub highlightUniqueValues()
+    Dim rng As Range
+    Set rng = Application.InputBox("Chon vung can tim", Type:=8)
+    rng.FormatConditions.Delete
+    Dim uv As UniqueValues
+    Set uv = rng.FormatConditions.AddUniqueValues
+    uv.DupeUnique = xlUnique
+    uv.Interior.Color = vbGreen
+    Set rng = Nothing
+End Sub
