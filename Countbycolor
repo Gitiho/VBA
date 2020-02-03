@@ -1,7 +1,7 @@
 # VBA
 Option Explicit
 ' Suu tam
-Function CountByColor(CellColor As Range, CountRange As Range)
+Function GitihoCountByColor(CellColor As Range, CountRange As Range)
 Application.Volatile
 Dim ICol As Integer
 Dim TCell As Range
