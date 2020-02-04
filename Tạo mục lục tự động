@@ -58,7 +58,7 @@ Sub GITIHOTAOMUCLUC(RNG As String) ' DIA CHI MUON DAT QUAY LAI
                                             TextToDisplay:=Ws.Name
             'Them nut Quay ve Sheet Muc luc tai moi Sheet
             With Ws
-                .Hyperlinks.Add Anchor:=.Range(RNG), Address:="", SubAddress:="Index", TextToDisplay:="Tr" & ChrW(7903) & " v" & ChrW(7873)
+                .Hyperlinks.Add Anchor:=.Range(RNG), Address:="", SubAddress:="GITIHO", TextToDisplay:="Tr" & ChrW(7903) & " v" & ChrW(7873)
             End With
             Counter = Counter + 1
         End If
@@ -68,3 +68,4 @@ End Sub
 Sub TAOMUCLUCSHEET()
     GITIHOTAOMUCLUC "T1"
 End Sub
+
