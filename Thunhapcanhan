@@ -1,8 +1,13 @@
 # VBA
-Function GitihoThueTNCN(THUNHAP As Double, Optional phuthuoc As Byte = 0, Optional GiamTru As Double = 0) As Double ' Optional là bien có the co hoac khong
+Function GitihoThueTNCN(THUNHAP As Double, Optional cachtinh As Boolean, Optional phuthuoc As Byte = 0, Optional GiamTru As Double = 0) As Double ' Optional là bien có the co hoac khong
     Application.Volatile (True)
     THUNHAP = Round(THUNHAP, 0)
-    THUNHAP = THUNHAP - 9000000 - (phuthuoc * 3600000) - GiamTru
+    If (cachtinh = False) Then
+        THUNHAP = THUNHAP
+    Else
+        THUNHAP = THUNHAP - 9000000 - (phuthuoc * 3600000) - GiamTru
+    End If
+    
     Select Case THUNHAP
         Case 1 To 5000000: GitihoThueTNCN = THUNHAP * 0.05
         Case 5000001 To 10000000: GitihoThueTNCN = THUNHAP * 0.1 - 250000
@@ -13,3 +18,4 @@ Function GitihoThueTNCN(THUNHAP As Double, Optional phuthuoc As Byte = 0, Option
         Case Is > 80000000: GitihoThueTNCN = THUNHAP * 0.35 - 9850000
     End Select
 End Function
+
