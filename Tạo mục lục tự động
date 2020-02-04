@@ -1,5 +1,5 @@
 Option Explicit
-Function TAOMUCLUC(RNG As String)
+Sub GITIHOTAOMUCLUC(RNG As String) ' DIA CHI MUON DAT QUAY LAI
      Dim wsSheet As Worksheet
     Dim Ws As Worksheet
     Dim Counter As Long
@@ -16,7 +16,7 @@ Function TAOMUCLUC(RNG As String)
 
     With wsSheet
         .Cells(2, 1).Value = "DANH SÁCH CÁC SHEETS"
-        .Cells(2, 1).name = "Index"
+        .Cells(2, 1).Name = "GITIHO"
         .Cells(4, 1).Value = "STT"
         .Cells(4, 2).Value = "TÊN SHEETS"
     End With
@@ -64,7 +64,7 @@ Function TAOMUCLUC(RNG As String)
         End If
     Next Ws
    Set xlSheet = Nothing
-End Function
+End Sub
 Sub TAOMUCLUCSHEET()
-    TAOMUCLUC "T1"
+    GITIHOTAOMUCLUC "T1"
 End Sub
