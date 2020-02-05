@@ -1,0 +1,81 @@
+# VBA
+Option Explicit
+Sub GitihoInhangloat()
+    Dim tinhtoan As Variant
+    Dim manhinh As Boolean
+    Dim rng, rng1, rng2 As Range
+    Dim t1, t2, sh2, sh1, add_rng1 As String
+    Dim sotrang, k As Integer, i As Long, t
+    Dim she As Sheets
+    
+    On Error GoTo thoat
+    manhinh = Application.ScreenUpdating
+    
+    tinhtoan = Application.Calculation
+    Application.Calculation = xlCalculationManual
+    Application.Calculation = xlCalculationManual
+    
+    '---------------------
+    Set rng1 = Application.InputBox("nhap vao dia chi output", Type:=8)
+    If rng1.Count <> 1 Then
+        MsgBox "chon sai so ô, chi duoc chon 1 ô"
+        Exit Sub
+    End If
+    
+    add_rng1 = rng1.Address
+    '---------------------
+    
+    Set rng2 = Application.InputBox("nhap vao dia chi input", Type:=8)
+    Application.ScreenUpdating = False
+    sotrang = rng2.Count
+    For Each rng In rng2
+        If rng.EntireRow.Hidden = True Or rng.Text = "" Then
+            sotrang = sotrang - 1
+        End If
+    Next
+    
+    '---------------------(1)
+    'Mo 1 workbook moi
+    t1 = ActiveWorkbook.Name
+    sh1 = ActiveSheet.Name
+    Sheets(sh1).Select
+    Sheets(sh1).Copy
+    t2 = ActiveWorkbook.Name
+    sh2 = ActiveSheet.Name
+    '---------------------(1)
+    '---------------------(2)
+    'tao ra cac sheet
+    If sotrang > 1 Then
+       For i = 1 To sotrang - 1
+           Workbooks(t2).Sheets(sh2).Select
+           Workbooks(t2).Sheets(sh2).Copy Before:=Sheets(sh2)
+       Next
+    End If
+    '----------------------(2)
+    
+    
+    '------------------------------(3)
+    ' Lay gia tri tu rng2 thay vao cac sheet
+    k = 0
+    For Each rng In rng2
+        If rng.EntireRow.Hidden = False And rng.Text <> "" Then
+          k = k + 1
+          Workbooks(t2).Sheets(k).Range(add_rng1).Value = rng.Value
+        End If
+    Next
+    
+    Application.Calculation = xlCalculationAutomatic
+    '------------------------------(3)
+    
+    Application.ScreenUpdating = manhinh
+    
+    t = Application.Dialogs(xlDialogPrinterSetup).Show
+    Workbooks(t2).PrintOut ActivePrinter:=t
+    
+    Workbooks(t2).Close False
+    
+thoat:
+    Application.Calculation = tinhtoan
+    Application.ScreenUpdating = manhinh
+   
+End Sub
