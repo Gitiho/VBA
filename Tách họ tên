@@ -1,0 +1,18 @@
+# VBA
+Option Explicit
+Public Function GitihoTachHoTen(ByVal hoten As String, ByVal kieu As Integer, phancach As String) As String
+    Dim arr As Variant, i As Long, dodai As Long, hodem As String
+    arr = Split(hoten, phancach)
+    dodai = UBound(arr)
+    If kieu = 0 Then
+        GitihoTachHoTen = Trim(arr(0))
+    ElseIf kieu = 1 Then
+        For i = 1 To dodai - 1
+            hodem = hodem & " " & arr(i)
+        Next
+
+        GitihoTachHoTen = Trim(hodem)
+    Else
+        GitihoTachHoTen = Trim(arr(dodai))
+    End If
+End Function
