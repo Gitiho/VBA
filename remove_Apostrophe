@@ -1,0 +1,15 @@
+# VBA
+Sub remove_Apostrophe()
+Dim rng As Range
+Dim WorkRng As Range
+On Error Resume Next
+xTitleId = "Gitiho"
+Set WorkRng = Application.Selection
+Set WorkRng = Application.InputBox("Range", xTitleId, WorkRng.Address, Type:=8)
+Set WorkRng = WorkRng.SpecialCells(xlCellTypeConstants, xlNumbers)
+For Each rng In WorkRng
+    If Not rng.HasFormula Then
+        rng.Formula = rng.Value
+    End If
+Next
+End Sub
